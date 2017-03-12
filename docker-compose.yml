@@ -1,6 +1,6 @@
 version: '2'
 services:
-  wildflyswarm:
+  ms-rest-todos:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,16 +8,12 @@ services:
     - 8080:8080
     container_name: ms-rest-todos
     external_links:
-    - postgresdb:postgres
-     
+      - postgresdb:postgres
+    networks:
+      - default
+      - postgresdb_default
 networks:
   default:
-    external:
-      name: postgresdb_default
-
-      
-      
-      
-      
-      
+  postgresdb_default:
+    external: true
 
